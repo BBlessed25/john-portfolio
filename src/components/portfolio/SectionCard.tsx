@@ -16,7 +16,7 @@ export default function SectionCard({
   return (
     <section id={id} className="scroll-mt-16">
       {title ? (
-        <h2 className="mb-4 text-base font-semibold text-[var(--gh-fg)]">
+        <h2 className="mb-4 text-lg font-semibold text-[var(--gh-fg)]">
           {title}
         </h2>
       ) : null}

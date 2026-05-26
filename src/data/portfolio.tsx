@@ -35,6 +35,15 @@ export const experiences: Experience[] = [
       "Designed structured AI workflows using Claude Skills, JSON mode, tool-calling, and Supabase/PostgreSQL for reliable automation and lead tracking.",
     ],
   },
+  {
+    company: "OLUDAYE NG",
+    role: "Software Engineer",
+    highlights: [
+      "Demonstrated strong analytical and technical skills to translate business questions into use cases and data model requirements, anticipating future ad-hoc needs.",
+      "Created detailed technical documentation, including use cases and UML diagrams, to facilitate knowledge sharing and understanding among team members.",
+      "Engineered cross-platform fund-raising mobile app with React Native and Firebase to streamline fundraising efforts, ensuring a user-friendly experience on both iOS and Android platforms.",
+    ],
+  },
 ];
 
 export const activities: Activity[] = [

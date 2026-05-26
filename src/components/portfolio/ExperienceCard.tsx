@@ -13,12 +13,12 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             href={experience.companyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="company-link text-sm font-semibold"
+            className="company-link text-base font-semibold"
           >
             {experience.company}
           </a>
         ) : (
-          <h4 className="text-sm font-semibold text-[var(--gh-fg)]">
+          <h4 className="text-base font-semibold text-[var(--gh-fg)]">
             {experience.company}
           </h4>
         )}
@@ -30,9 +30,9 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             {experience.location}
           </p>
         ) : null}
-        <p className="mt-1 text-sm text-[var(--gh-fg)]">{experience.role}</p>
+        <p className="mt-1 text-base text-[var(--gh-fg)]">{experience.role}</p>
       </div>
-      <ul className="mt-3 space-y-2 text-sm leading-relaxed text-[var(--gh-fg-muted)]">
+      <ul className="mt-3 space-y-2 text-base leading-relaxed text-[var(--gh-fg-muted)]">
         {experience.highlights.map((highlight) => (
           <li key={highlight} className="flex gap-2">
             <span className="text-[var(--gh-fg-muted)]">●</span>

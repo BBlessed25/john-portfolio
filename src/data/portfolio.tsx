@@ -1,9 +1,9 @@
 export type Experience = {
   company: string;
+  companyUrl?: string;
   tagline?: string;
   role: string;
-  period: string;
-  location: string;
+  location?: string;
   highlights: string[];
 };
 
@@ -27,10 +27,8 @@ export const profile = {
 export const experiences: Experience[] = [
   {
     company: "CanAutomate",
-    tagline: "AI Automation Agency for Canadian SMBs",
+    companyUrl: "https://www.canautomate.ca",
     role: "AI Engineer",
-    period: "December 2025 – Present",
-    location: "London, Canada",
     highlights: [
       "Built a multi-channel outreach system, email, WhatsApp, SMS, AI voice, using FastAPI, Celery, Redis, Claude API, ElevenLabs, and Twilio, with a Supabase/PostgreSQL backend tracking lead state and outreach history.",
       "Built lead sourcing and enrichment pipelines using external APIs and LLMs to qualify and engage prospects automatically.",
@@ -41,8 +39,6 @@ export const experiences: Experience[] = [
   {
     company: "OLUDAYE NG",
     role: "Software Engineer",
-    period: "Aug 2020 – Dec 2025",
-    location: "Remote",
     highlights: [
       "Demonstrated strong analytical and technical skills to translate business questions into use cases and data model requirements, anticipating future ad-hoc needs.",
       "Created detailed technical documentation, including use cases and UML diagrams, to facilitate knowledge sharing and understanding among team members.",

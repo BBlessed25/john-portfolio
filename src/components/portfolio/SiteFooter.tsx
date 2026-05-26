@@ -4,7 +4,6 @@ import { useState } from "react";
 import { profile } from "@/data/portfolio";
 
 export default function SiteFooter() {
-  const year = new Date().getFullYear();
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = async () => {
@@ -22,16 +21,12 @@ export default function SiteFooter() {
 
   return (
     <footer className="mt-12 border-t border-[var(--gh-border)] py-8">
-      <div className="mx-auto flex max-w-[1012px] flex-col items-center justify-between gap-4 px-4 text-xs text-[var(--gh-fg-muted)] sm:flex-row">
-        <p>
-      
-        </p>
-
+      <div className="mx-auto flex max-w-[1012px] justify-center px-4 text-xs text-[var(--gh-fg-muted)]">
         <div className="flex flex-wrap items-center justify-center gap-4">
           <button
             type="button"
             onClick={handleCopyEmail}
-            className="cursor-pointer hover:text-[var(--gh-accent)]"
+            className="footer-link cursor-pointer bg-transparent p-0 text-xs text-[var(--gh-fg-muted)]"
           >
             {copied ? "Copied!" : "Email"}
           </button>
@@ -40,7 +35,7 @@ export default function SiteFooter() {
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[var(--gh-accent)]"
+            className="footer-link text-[var(--gh-fg-muted)]"
           >
             LinkedIn
           </a>
@@ -49,7 +44,7 @@ export default function SiteFooter() {
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-[var(--gh-accent)]"
+            className="footer-link text-[var(--gh-fg-muted)]"
           >
             GitHub
           </a>

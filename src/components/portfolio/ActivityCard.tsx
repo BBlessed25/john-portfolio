@@ -1,5 +1,4 @@
 import type { Activity } from "@/data/portfolio";
-import InnerCard from "@/components/ui/InnerCard";
 
 type ActivityCardProps = {
   activity: Activity;
@@ -7,7 +6,7 @@ type ActivityCardProps = {
 
 export default function ActivityCard({ activity }: ActivityCardProps) {
   return (
-    <InnerCard>
+    <article className="py-1">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div>
           <h4 className="text-sm font-semibold text-[var(--gh-fg)]">
@@ -32,6 +31,6 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
           </li>
         ))}
       </ul>
-    </InnerCard>
+    </article>
   );
 }

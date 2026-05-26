@@ -4,9 +4,15 @@ type SectionCardProps = {
   title?: string;
   children: ReactNode;
   id?: string;
+  bordered?: boolean;
 };
 
-export default function SectionCard({ title, children, id }: SectionCardProps) {
+export default function SectionCard({
+  title,
+  children,
+  id,
+  bordered = true,
+}: SectionCardProps) {
   return (
     <section id={id} className="scroll-mt-16">
       {title ? (
@@ -14,7 +20,13 @@ export default function SectionCard({ title, children, id }: SectionCardProps) {
           {title}
         </h2>
       ) : null}
-      <div className="rounded-[var(--gh-radius)] border border-[var(--gh-border)] bg-[var(--gh-default)] p-4 shadow-[0_1px_0_rgba(27,31,36,0.04)] md:p-6">
+      <div
+        className={
+          bordered
+            ? "rounded-[var(--gh-radius)] border border-[var(--gh-border)] bg-[var(--gh-default)] p-4 shadow-[0_1px_0_rgba(27,31,36,0.04)] md:p-6"
+            : "p-0"
+        }
+      >
         {children}
       </div>
     </section>

@@ -12,18 +12,18 @@ export default function Home() {
       <SiteHeader />
 
       <main className="mx-auto max-w-[1012px] space-y-8 px-4 py-6">
-        <SectionCard title="Work Experience" id="work">
+        <SectionCard title="Experience" id="work" bordered={false}>
           <div className="space-y-3">
             {experiences.map((experience) => (
               <ExperienceCard
-                key={`${experience.company}-${experience.period}`}
+                key={experience.company}
                 experience={experience}
               />
             ))}
           </div>
         </SectionCard>
 
-        <SectionCard title="Research & Projects" id="research-projects">
+        <SectionCard title="Research & Projects" id="research-projects" bordered={false}>
           <div className="space-y-3">
             {activities.map((activity) => (
               <ActivityCard

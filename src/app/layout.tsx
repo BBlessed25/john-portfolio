@@ -11,6 +11,11 @@ const trirong = Trirong({
 export const metadata: Metadata = {
   title: "John Ayodeji Adelusi | Portfolio",
   description: "AI Engineer and Software Engineer Portfolio",
+  icons: {
+    icon: [{ url: "/john.jpeg", type: "image/jpeg" }],
+    shortcut: "/john.jpeg",
+    apple: "/john.jpeg",
+  },
 };
 
 export default function RootLayout({

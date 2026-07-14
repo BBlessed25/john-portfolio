@@ -30,16 +30,21 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
             {experience.location}
           </p>
         ) : null}
-        <p className="mt-1 text-base text-[var(--gh-fg)]">{experience.role}</p>
+        <p className="mt-1 text-base text-[var(--gh-fg)]">
+          {experience.role}
+          {experience.period ? ` · ${experience.period}` : ""}
+        </p>
       </div>
-      <ul className="mt-3 space-y-2 text-base leading-relaxed text-[var(--gh-fg-muted)]">
-        {experience.highlights.map((highlight) => (
-          <li key={highlight} className="flex gap-2">
-            <span className="text-[var(--gh-fg-muted)]">●</span>
-            <span>{highlight}</span>
-          </li>
-        ))}
-      </ul>
+      {experience.highlights.length > 0 ? (
+        <ul className="mt-3 space-y-2 text-base leading-relaxed text-[var(--gh-fg-muted)]">
+          {experience.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-2">
+              <span className="text-[var(--gh-fg-muted)]">●</span>
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </article>
   );
 }

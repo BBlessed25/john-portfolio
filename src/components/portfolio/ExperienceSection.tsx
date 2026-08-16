@@ -42,27 +42,27 @@ function CurrentExperienceCard({ experience }: { experience: Experience }) {
       id={experienceAnchor(experience.company).slice(1)}
       className="experience-current-card scroll-mt-24"
     >
-      <div className="experience-current-card-glow" aria-hidden />
-      <div className="experience-current-card-content">
-        <p className="experience-current-label">
-          <span className="experience-current-dot" aria-hidden />
-          CURRENTLY
-        </p>
-        <div className="experience-current-company">
-          <CompanyName experience={experience} />
-        </div>
-        <h3 className="experience-current-role">{experience.role}</h3>
-        {experience.period ? (
-          <p className="experience-current-period">{experience.period}</p>
-        ) : null}
-        {experience.highlights.length > 0 ? (
-          <ul className="experience-current-highlights">
-            {experience.highlights.map((highlight) => (
-              <li key={highlight}>{highlight}</li>
-            ))}
-          </ul>
-        ) : null}
+      <p className="experience-current-label">
+        <span className="experience-current-dot" aria-hidden>
+          <span className="experience-current-dot-ping" />
+          <span className="experience-current-dot-core" />
+        </span>
+        CURRENTLY
+      </p>
+      <div className="experience-current-company">
+        <CompanyName experience={experience} />
       </div>
+      <h3 className="experience-current-role">{experience.role}</h3>
+      {experience.period ? (
+        <p className="experience-current-period">{experience.period}</p>
+      ) : null}
+      {experience.highlights.length > 0 ? (
+        <ul className="experience-current-highlights">
+          {experience.highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
+          ))}
+        </ul>
+      ) : null}
     </article>
   );
 }

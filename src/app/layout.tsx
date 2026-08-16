@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Lexend, Playfair_Display } from "next/font/google";
+import { Lexend } from "next/font/google";
 import "./globals.css";
 
 const lexend = Lexend({
   variable: "--font-lexend",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -38,9 +32,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${lexend.variable} ${playfair.variable} ${lexend.className} antialiased`}
-      >
+      <body className={`${lexend.variable} ${lexend.className} antialiased`}>
         {children}
       </body>
     </html>

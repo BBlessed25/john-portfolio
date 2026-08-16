@@ -40,11 +40,7 @@ export const experiences: Experience[] = [
     role: "Senior Software Engineer",
     period: "Dec 2025 – Present",
     location: "London, Ontario, Canada · Remote",
-    highlights: [
-      "Built a multi-channel outreach system for email, WhatsApp, SMS, and AI voice using FastAPI, Celery, Redis, Twilio, ElevenLabs, and Claude API.",
-      "Developed lead sourcing and enrichment pipelines with external APIs and LLMs to qualify, score, and engage prospects automatically.",
-      "Designed structured AI workflows using Claude Skills, JSON mode, tool-calling, and Supabase/PostgreSQL for reliable automation and lead tracking.",
-    ],
+    highlights: [],
   },
   {
     company: "OLUDAYE NG",
@@ -80,3 +76,20 @@ export const activities: Activity[] = [
     ],
   },
 ];
+
+export const research = {
+  headline: "I turn research ideas into systems that actually run in production.",
+  body:
+    "My work spans agentic LLM pipelines with LangGraph and persistent memory, distributed scraping systems using Playwright and Crawlee, and AI meeting workflows powered by Whisper and semantic processing. I care about modular architecture, reliable APIs, and interfaces people want to use.",
+  quote:
+    "The same curiosity that drives a new experiment is the one I bring to every blank codebase.",
+  tags: [
+    "Agentic AI",
+    "LangGraph",
+    "Playwright",
+    "Whisper",
+    "LLM Pipelines",
+    "APIs & UX",
+  ],
+  highlights: activities[0]?.highlights ?? [],
+};

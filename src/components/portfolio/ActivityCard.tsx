@@ -1,3 +1,4 @@
+import { Dot } from "lucide-react";
 import type { Activity } from "@/data/portfolio";
 
 type ActivityCardProps = {
@@ -34,7 +35,7 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
       >
         {activity.highlights.map((highlight) => (
           <li key={highlight} className="flex gap-2">
-            <span className="text-[var(--gh-fg-muted)]">●</span>
+            <Dot className="mt-0.5 h-5 w-5 shrink-0 text-[var(--gh-fg-muted)]" aria-hidden />
             <span>{highlight}</span>
           </li>
         ))}

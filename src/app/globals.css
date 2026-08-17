@@ -73,9 +73,12 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
 }
 
 .site-header-brand {
+  flex: 0 0 auto;
   border: 0;
   background: transparent;
   padding: 0;
@@ -91,7 +94,11 @@ a {
 .site-header-nav {
   display: flex;
   align-items: center;
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
   gap: 2px;
+  min-width: 0;
   padding: 6px 8px 6px 18px;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -148,8 +155,65 @@ a {
   background: #d4d4d4;
 }
 
-.site-header-more-wrap {
+.site-header-more-wrap,
+.site-header-hamburger-wrap {
   position: relative;
+  flex-shrink: 0;
+}
+
+.site-header-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg-nav);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.site-header-hamburger:hover,
+.site-header-hamburger[aria-expanded="true"] {
+  background: #3a3a3a;
+  color: var(--fg);
+}
+
+[data-theme="light"] .site-header-hamburger:hover,
+[data-theme="light"] .site-header-hamburger[aria-expanded="true"] {
+  background: #d4d4d4;
+}
+
+.site-header-mobile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  min-width: 168px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg-card);
+}
+
+.site-header-mobile-link {
+  border: 0;
+  background: transparent;
+  padding: 12px 18px;
+  color: var(--fg-nav);
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.site-header-mobile-link:hover,
+.site-header-mobile-link.is-active {
+  color: var(--fg);
+  background: rgb(255 255 255 / 0.03);
 }
 
 .site-header-dropdown {
@@ -783,7 +847,7 @@ a.experience-company-line.company-link:hover::after {
   color: var(--fg);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .posts-layout,
   .offer-grid,
   .experience-previous-row {
@@ -793,5 +857,42 @@ a.experience-company-line.company-link:hover::after {
   .hero-stage {
     min-height: auto;
     padding-top: 36px;
+  }
+
+  .site-header-inner {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .site-header-brand {
+    font-size: 28px;
+  }
+
+  .site-header-link {
+    display: none;
+  }
+
+  .site-header-hamburger {
+    display: inline-flex;
+  }
+
+  .site-header-nav {
+    flex: 0 0 auto;
+    padding: 4px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    padding-top: 20px;
+  }
+
+  .site-wrap {
+    width: min(1080px, calc(100% - 32px));
+  }
+
+  .site-header-brand {
+    font-size: 24px;
   }
 }

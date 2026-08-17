@@ -1,118 +1,83 @@
 "use client";
 
-import { Battery, BatteryCharging, Moon, Search, Sun } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import SiteSearch from "@/components/portfolio/SiteSearch";
-import { profile } from "@/data/portfolio";
-import { useBattery } from "@/hooks/useBattery";
-import { useTheme } from "@/hooks/useTheme";
+import { Ellipsis } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import SocialDock from "@/components/portfolio/SocialDock";
 
-const navLinks = [
-  { label: "Experience", href: "#work" },
-  { label: "Projects", href: "#research-projects" },
-  { label: "Contact", href: "#contact" },
+export type NavView = "home" | "work" | "projects" | "blog" | "contact";
+
+const navLinks: { label: string; view: NavView }[] = [
+  { label: "Experience", view: "work" },
+  { label: "Projects", view: "projects" },
+  { label: "Blog", view: "blog" },
+  { label: "Contact", view: "contact" },
 ];
 
-export default function SiteHeader() {
-  const { level, charging, supported } = useBattery();
-  const { toggle, label, theme, ready } = useTheme();
-  const [searchOpen, setSearchOpen] = useState(false);
+type SiteHeaderProps = {
+  view: NavView;
+  onHome: () => void;
+  onNavigate: (view: NavView) => void;
+};
 
-  const openSearch = useCallback(() => setSearchOpen(true), []);
-  const closeSearch = useCallback(() => setSearchOpen(false), []);
+export default function SiteHeader({ view, onHome, onNavigate }: SiteHeaderProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        setSearchOpen(true);
-      }
+    if (!menuOpen) return;
 
-      if (event.key === "Escape") {
-        setSearchOpen(false);
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false);
       }
     };
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("mousedown", handlePointerDown);
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const batteryLabel = supported && level !== null ? `${level}%` : "—";
-  const ThemeIcon = theme === "light" ? Moon : Sun;
+    return () => {
+      window.removeEventListener("mousedown", handlePointerDown);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
 
   return (
-    <>
-      <header className="site-header">
-        <div className="site-header-inner">
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="site-header-brand"
-          >
-            {profile.name.split(" ").slice(0, 2).join(" ")}
-          </button>
+    <header className="site-header">
+      <div className="site-wrap site-header-inner">
+        <button type="button" onClick={onHome} className="site-header-brand">
+          John
+        </button>
 
-          <nav className="site-header-nav" aria-label="Main navigation">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="site-header-link">
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="site-header-actions">
+        <nav className="site-header-nav" aria-label="Main navigation">
+          {navLinks.map((link) => (
+            <button
+              key={link.view}
+              type="button"
+              className={`site-header-link${view === link.view ? " is-active" : ""}`}
+              onClick={() => onNavigate(link.view)}
+            >
+              {link.label}
+            </button>
+          ))}
+          <div className="site-header-more-wrap" ref={menuRef}>
             <button
               type="button"
-              onClick={openSearch}
-              className="site-header-icon-btn"
-              aria-label="Search"
-              title="Search"
+              className="site-header-more"
+              aria-label="More"
+              aria-expanded={menuOpen}
+              aria-haspopup="menu"
+              onClick={() => setMenuOpen((open) => !open)}
             >
-              <Search
-                className="h-[1.125rem] w-[1.125rem]"
-                strokeWidth={1.5}
-                aria-hidden
-              />
+              <Ellipsis className="h-4 w-4" strokeWidth={2} aria-hidden />
             </button>
-            <span
-              className="site-header-battery"
-              title={
-                supported
-                  ? charging
-                    ? "Charging"
-                    : "Battery level"
-                  : "Battery status unavailable in this browser"
-              }
-            >
-              {charging ? (
-                <BatteryCharging className="h-4 w-4 shrink-0" aria-hidden />
-              ) : (
-                <Battery className="h-4 w-4 shrink-0" aria-hidden />
-              )}
-              {batteryLabel}
-            </span>
-            <button
-              type="button"
-              onClick={toggle}
-              className="site-header-theme-btn"
-              aria-label={`Switch to ${label.toLowerCase()} mode`}
-              title={`Switch to ${label.toLowerCase()} mode`}
-            >
-              {ready ? (
-                <ThemeIcon className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
-              ) : (
-                <span className="site-header-theme-dot" aria-hidden />
-              )}
-            </button>
+            {menuOpen ? <SocialDock /> : null}
           </div>
-        </div>
-      </header>
-
-      <SiteSearch open={searchOpen} onClose={closeSearch} />
-    </>
+        </nav>
+      </div>
+    </header>
   );
 }

@@ -102,10 +102,9 @@ export default function ExperienceSection() {
   );
 
   return (
-    <section id="work" className="experience-section scroll-mt-16">
-      <span className="portfolio-section-number">01</span>
-      <h2 className="portfolio-section-title">Experience</h2>
-      <p className="portfolio-section-subtitle">
+    <section id="work" className="section site-wrap scroll-mt-24">
+      <h2 className="section-title">Experience</h2>
+      <p className="section-copy">
         Where I have built products and systems, the most recent first.
       </p>
 

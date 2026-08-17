@@ -1,4 +1,4 @@
-import { activities, experiences, profile, research } from "@/data/portfolio";
+import { activities, experiences, posts, profile, research } from "@/data/portfolio";
 
 export type SearchResult = {
   id: string;
@@ -58,10 +58,10 @@ function buildIndex(): SearchResult[] {
   for (const highlight of research.highlights) {
     items.push({
       id: `research-${slugify(highlight.slice(0, 40))}`,
-      title: "Research & Projects",
+      title: "Projects",
       snippet: highlight,
-      section: "Research & Projects",
-      href: "#research-projects",
+      section: "Projects",
+      href: "#projects",
     });
   }
 
@@ -70,36 +70,31 @@ function buildIndex(): SearchResult[] {
       id: `research-tag-${slugify(tag)}`,
       title: tag,
       snippet: research.headline,
-      section: "Research & Projects",
-      href: "#research-projects",
+      section: "Projects",
+      href: "#projects",
     });
   }
 
   for (const activity of activities) {
-    const href = "#research-projects";
-    const meta = [activity.organization, activity.role, activity.period]
-      .filter(Boolean)
-      .join(" · ");
-
-    if (meta) {
-      items.push({
-        id: `act-${slugify(activity.organization || activity.role)}`,
-        title: activity.organization || activity.role,
-        snippet: meta,
-        section: "Research & Projects",
-        href,
-      });
-    }
-
     for (const highlight of activity.highlights) {
       items.push({
         id: `act-${slugify(highlight.slice(0, 40))}`,
-        title: "Research & Projects",
+        title: "Projects",
         snippet: highlight,
-        section: "Research & Projects",
-        href,
+        section: "Projects",
+        href: "#projects",
       });
     }
+  }
+
+  for (const post of posts) {
+    items.push({
+      id: `post-${slugify(post.title)}`,
+      title: post.title,
+      snippet: post.excerpt,
+      section: "Posts",
+      href: post.href,
+    });
   }
 
   return items;

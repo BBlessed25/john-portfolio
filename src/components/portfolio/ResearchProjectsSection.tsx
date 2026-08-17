@@ -2,10 +2,9 @@ import { research } from "@/data/portfolio";
 
 export default function ResearchProjectsSection() {
   return (
-    <section id="research-projects" className="research-section scroll-mt-16">
-      <span className="portfolio-section-number">02</span>
-      <h2 className="portfolio-section-title">Research &amp; Projects</h2>
-      <p className="portfolio-section-subtitle">{research.headline}</p>
+    <section id="projects" className="section site-wrap scroll-mt-24">
+      <h2 className="section-title">Projects</h2>
+      <p className="section-copy">{research.headline}</p>
 
       <div className="research-section-content">
         <p className="research-body">{research.body}</p>

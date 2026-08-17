@@ -93,3 +93,115 @@ export const research = {
   ],
   highlights: activities[0]?.highlights ?? [],
 };
+
+export type BlogPost = {
+  date: string;
+  readTime: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  href: string;
+};
+
+export const posts: BlogPost[] = [
+  {
+    date: "Jul 10",
+    readTime: "6 min read",
+    category: "Agents",
+    title: "Building Agentic LLM Pipelines That Survive Production",
+    excerpt:
+      "How LangGraph, tool-calling, and persistent memory turn experimental prompts into reliable agent workflows that can run unattended.",
+    href: "#projects",
+  },
+  {
+    date: "Jun 22",
+    readTime: "5 min read",
+    category: "ML Ops",
+    title: "Persistent Memory for AI Agents Without Losing Control",
+    excerpt:
+      "A practical look at storing, retrieving, and bounding agent memory so systems stay useful without drifting or leaking context.",
+    href: "#projects",
+  },
+  {
+    date: "May 18",
+    readTime: "7 min read",
+    category: "Data",
+    title: "Distributed Scraping with Playwright for Model-Ready Data",
+    excerpt:
+      "Designing scalable extraction pipelines that collect clean, structured data for enrichment, scoring, and downstream LLM tasks.",
+    href: "#projects",
+  },
+  {
+    date: "Apr 04",
+    readTime: "4 min read",
+    category: "Speech",
+    title: "From Whisper Transcripts to Actionable Meeting Intelligence",
+    excerpt:
+      "Turning raw audio into summaries, decisions, and action items with semantic processing instead of dumping another wall of text.",
+    href: "#posts",
+  },
+  {
+    date: "Mar 12",
+    readTime: "6 min read",
+    category: "Engineering",
+    title: "Designing APIs That Frontend Teams Can Actually Ship Against",
+    excerpt:
+      "Contracts, versioning, and error shapes that keep product work moving when multiple clients depend on the same backend.",
+    href: "#posts",
+  },
+  {
+    date: "Feb 20",
+    readTime: "5 min read",
+    category: "Engineering",
+    title: "From Prototype to Production: A Practical Frontend Checklist",
+    excerpt:
+      "Performance, accessibility, and state management habits that turn a working demo into something users can trust.",
+    href: "#posts",
+  },
+  {
+    date: "Jan 28",
+    readTime: "7 min read",
+    category: "Engineering",
+    title: "Building Reliable Background Jobs Without Losing Observability",
+    excerpt:
+      "Retries, queues, and logging patterns for automation systems that have to run overnight without silent failure.",
+    href: "#posts",
+  },
+  {
+    date: "Jan 08",
+    readTime: "5 min read",
+    category: "Engineering",
+    title: "Clean Architecture for Small Teams Shipping Fast",
+    excerpt:
+      "How to keep modules, APIs, and UI boundaries clear enough that a two-person team can still move quickly.",
+    href: "#posts",
+  },
+];
+
+export const offerings = [
+  {
+    title: "Agentic AI Systems",
+    description:
+      "Design and ship LLM agents with tool-calling, memory, and structured outputs that hold up outside a demo.",
+  },
+  {
+    title: "Automation Engineering",
+    description:
+      "Build multi-channel outreach, enrichment, and workflow systems that qualify and engage leads automatically.",
+  },
+  {
+    title: "Production LLM Pipelines",
+    description:
+      "Move research ideas into APIs and jobs with reliable JSON, retries, evaluation, and clean interfaces.",
+  },
+  {
+    title: "Data Extraction at Scale",
+    description:
+      "Collect and structure web data with Playwright and Crawlee so models and products have something real to work with.",
+  },
+  {
+    title: "Product-Ready Interfaces",
+    description:
+      "Pair the backend with frontend experiences people actually use, from internal tools to customer-facing apps.",
+  },
+];

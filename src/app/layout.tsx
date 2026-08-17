@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Lexend } from "next/font/google";
+import { Inter, Nunito } from "next/font/google";
 import "./globals.css";
 
-const lexend = Lexend({
-  variable: "--font-lexend",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+  weight: ["700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -24,15 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");var d=t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.theme=d?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`,
+            __html: `(function(){try{var t=localStorage.getItem("theme");var d=true;if(t==="light")d=false;else if(t==="system")d=window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.dataset.theme=d?"dark":"light";}catch(e){document.documentElement.dataset.theme="dark";}})();`,
           }}
         />
       </head>
-      <body className={`${lexend.variable} ${lexend.className} antialiased`}>
+      <body className={`${inter.variable} ${nunito.variable} ${inter.className} antialiased`}>
         {children}
       </body>
     </html>

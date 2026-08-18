@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import type { Experience } from "@/data/portfolio";
 import { experiences } from "@/data/portfolio";
 import { experienceAnchor } from "@/lib/searchPortfolio";
@@ -6,83 +7,53 @@ function isCurrentRole(period?: string) {
   return period?.includes("Present") ?? false;
 }
 
-function formatCity(location?: string) {
-  if (!location) return "";
-
-  const place = location.split("·")[0]?.trim() ?? location;
-  const city = place.split(",")[0]?.trim();
-
-  return city || place;
-}
-
 function CompanyName({ experience }: { experience: Experience }) {
-  const label = experience.location
-    ? `${experience.company} · ${formatCity(experience.location)}`
-    : experience.company;
-
   if (experience.companyUrl) {
     return (
       <a
         href={experience.companyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="company-link experience-company-line"
+        className="experience-company-link"
       >
-        {label}
+        {experience.company}
+        <ArrowUpRight aria-hidden strokeWidth={1.8} />
       </a>
     );
   }
 
-  return <p className="experience-company-line">{label}</p>;
+  return <p className="experience-company-link">{experience.company}</p>;
 }
 
-function CurrentExperienceCard({ experience }: { experience: Experience }) {
+function ExperienceStep({
+  experience,
+}: {
+  experience: Experience;
+}) {
+  const current = isCurrentRole(experience.period);
+
   return (
     <article
       id={experienceAnchor(experience.company).slice(1)}
-      className="experience-current-card scroll-mt-24"
+      className="experience-row scroll-mt-24"
     >
-      <p className="experience-current-label">
-        <span className="experience-current-dot" aria-hidden>
-          <span className="experience-current-dot-ping" />
-          <span className="experience-current-dot-core" />
-        </span>
-        CURRENTLY
-      </p>
-      <div className="experience-current-company">
-        <CompanyName experience={experience} />
+      <div className="experience-row-meta">
+        {current ? (
+          <p className="experience-status">
+            <span aria-hidden />
+            Current
+          </p>
+        ) : null}
+        {experience.period ? <time>{experience.period}</time> : null}
       </div>
-      <h3 className="experience-current-role">{experience.role}</h3>
-      {experience.period ? (
-        <p className="experience-current-period">{experience.period}</p>
-      ) : null}
-      {experience.highlights.length > 0 ? (
-        <ul className="experience-current-highlights">
-          {experience.highlights.map((highlight) => (
-            <li key={highlight}>{highlight}</li>
-          ))}
-        </ul>
-      ) : null}
-    </article>
-  );
-}
-
-function PreviousExperienceRow({ experience }: { experience: Experience }) {
-  return (
-    <article
-      id={experienceAnchor(experience.company).slice(1)}
-      className="experience-previous-row scroll-mt-24"
-    >
-      {experience.period ? (
-        <time className="experience-previous-period">{experience.period}</time>
-      ) : (
-        <span className="experience-previous-period" />
-      )}
-      <div className="experience-previous-details">
+      <div className="experience-row-content">
+        <h2>{experience.role}</h2>
         <CompanyName experience={experience} />
-        <h4 className="experience-previous-role">{experience.role}</h4>
+        {experience.location ? (
+          <p className="experience-location">{experience.location}</p>
+        ) : null}
         {experience.highlights.length > 0 ? (
-          <ul className="experience-previous-highlights">
+          <ul className="experience-highlights">
             {experience.highlights.map((highlight) => (
               <li key={highlight}>{highlight}</li>
             ))}
@@ -94,49 +65,25 @@ function PreviousExperienceRow({ experience }: { experience: Experience }) {
 }
 
 export default function ExperienceSection() {
-  const currentRoles = experiences.filter((experience) =>
-    isCurrentRole(experience.period),
-  );
-  const previousRoles = experiences.filter(
-    (experience) => !isCurrentRole(experience.period),
-  );
-
   return (
-    <section id="work" className="section site-wrap scroll-mt-24">
-      <h2 className="section-title">Experience</h2>
-      <p className="section-copy">
-        Where I have built products and systems, the most recent first.
-      </p>
+    <section id="work" className="inner-page site-wrap scroll-mt-24">
+      <header className="inner-page-intro">
+        <p className="inner-page-eyebrow">Experience</p>
+        <h1 className="inner-page-title">Work that shaped how I build.</h1>
+        <p className="inner-page-copy">
+          A selection of teams, products, and systems I have helped move
+          forward—from production software to intelligent, agentic experiences.
+        </p>
+      </header>
 
-      <div className="experience-current-list">
-        {currentRoles.map((experience) => (
-          <CurrentExperienceCard key={experience.company} experience={experience} />
+      <div className="experience-list">
+        {experiences.map((experience) => (
+          <ExperienceStep
+            key={`${experience.company}-${experience.role}`}
+            experience={experience}
+          />
         ))}
       </div>
-
-      {previousRoles.length > 0 ? (
-        <>
-          <div className="experience-divider" aria-hidden>
-            <span className="experience-divider-line" />
-            <span className="experience-divider-icon">
-              <span className="experience-divider-dot" />
-            </span>
-            <span className="experience-divider-line" />
-          </div>
-
-          <div className="experience-previous">
-            <p className="experience-previous-label">PREVIOUSLY</p>
-            <div className="experience-previous-list">
-              {previousRoles.map((experience) => (
-                <PreviousExperienceRow
-                  key={experience.company}
-                  experience={experience}
-                />
-              ))}
-            </div>
-          </div>
-        </>
-      ) : null}
     </section>
   );
 }

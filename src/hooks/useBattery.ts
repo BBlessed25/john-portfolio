@@ -16,12 +16,13 @@ type NavigatorWithBattery = Navigator & {
 export function useBattery() {
   const [level, setLevel] = useState<number | null>(null);
   const [charging, setCharging] = useState(false);
-  const [supported, setSupported] = useState(true);
+  const supported =
+    typeof navigator === "undefined" ||
+    typeof (navigator as NavigatorWithBattery).getBattery === "function";
 
   useEffect(() => {
     const nav = navigator as NavigatorWithBattery;
     if (!nav.getBattery) {
-      setSupported(false);
       return;
     }
 

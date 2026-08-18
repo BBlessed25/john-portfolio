@@ -1,6 +1,6 @@
 "use client";
 
-import { Code2, Cpu, Gauge, Lightbulb, Mail, MessageCircle, PenLine } from "lucide-react";
+import { Code2, Cpu, Gauge, Mail, MessageCircle, PenLine } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { posts, profile } from "@/data/portfolio";
 
@@ -26,12 +26,20 @@ export default function RecentPosts() {
   const visiblePosts = showAll ? posts : posts.slice(0, PREVIEW_COUNT);
 
   return (
-    <section className="posts-section" id="posts" aria-labelledby="posts-title">
-      <div className="site-wrap posts-layout">
+    <section className="inner-page posts-section site-wrap" id="posts" aria-labelledby="posts-title">
+      <header className="inner-page-intro">
+        <p className="inner-page-eyebrow">Writing</p>
+        <h1 className="inner-page-title" id="posts-title">
+          Notes from the work.
+        </h1>
+        <p className="inner-page-copy">
+          Practical ideas about AI agents, production systems, data, and the
+          craft of building dependable software.
+        </p>
+      </header>
+
+      <div className="posts-layout">
         <div className="posts-main">
-          <h2 className="posts-heading" id="posts-title">
-            Recent Posts
-          </h2>
           <div className="posts-list">
             {visiblePosts.map((post) => {
               const Icon =
@@ -47,7 +55,9 @@ export default function RecentPosts() {
                       {post.category}
                     </span>
                   </div>
-                  <h3 className="post-title">{post.title}</h3>
+                  <div className="post-title-line">
+                    <h2 className="post-title">{post.title}</h2>
+                  </div>
                   <p className="post-excerpt">{post.excerpt}</p>
                 </article>
               );
@@ -58,22 +68,22 @@ export default function RecentPosts() {
           </button>
         </div>
 
-        <aside className="posts-sidebar">
-          <div className="side-card talk-card">
-            <Lightbulb className="talk-icon" strokeWidth={1.2} aria-hidden />
-            <h3>Have Something Cool in Mind?</h3>
-            <p>This can be start of something great!!!</p>
+        <aside className="posts-sidebar" aria-label="Stay in touch">
+          <div className="posts-aside-block">
+            <p className="inner-page-eyebrow">Start a conversation</p>
+            <h2>Have something cool in mind?</h2>
+            <p>This could be the start of something great.</p>
             <a href={`mailto:${profile.email}`} className="pill-btn talk-btn">
-              Let&apos;s Talk
+              Let&apos;s talk
               <MessageCircle className="h-4 w-4" strokeWidth={1.7} aria-hidden />
             </a>
           </div>
 
-          <div className="side-card newsletter-card">
-            <h3>
+          <div className="posts-aside-block newsletter-card">
+            <h2>
               <Mail className="h-4 w-4" strokeWidth={1.7} aria-hidden />
               Subscribe to my newsletter
-            </h3>
+            </h2>
             <p>Get important news and articles delivered directly to your inbox.</p>
             {subscribed ? (
               <p className="newsletter-note">You&apos;re on the list. Thanks for subscribing.</p>

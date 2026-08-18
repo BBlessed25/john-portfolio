@@ -1,19 +1,20 @@
-import { Lightbulb, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { profile } from "@/data/portfolio";
 
 export default function ContactSection() {
   return (
-    <section className="section" id="contact">
-      <div className="site-wrap" style={{ maxWidth: 420 }}>
-        <div className="side-card">
-          <Lightbulb className="talk-icon" strokeWidth={1.2} aria-hidden />
-          <h3>Have Something Cool in Mind?</h3>
-          <p>This can be start of something great!!!</p>
-          <a href={`mailto:${profile.email}`} className="pill-btn">
-            Let&apos;s Talk
-            <MessageCircle className="h-4 w-4" aria-hidden />
-          </a>
-        </div>
+    <section className="contact-stage" id="contact">
+      <div className="site-wrap contact-content">
+        <p className="inner-page-eyebrow">Contact</p>
+        <h1 className="inner-page-title">Have something cool in mind?</h1>
+        <p className="inner-page-copy">
+          Tell me what you are building, where you are stuck, or what you want
+          to explore. This could be the start of something great.
+        </p>
+        <a href={`mailto:${profile.email}`} className="pill-btn">
+          Let&apos;s talk
+          <MessageCircle className="h-4 w-4" aria-hidden />
+        </a>
       </div>
     </section>
   );

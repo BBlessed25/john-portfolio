@@ -30,18 +30,10 @@ function applyTheme(theme: Theme) {
 }
 
 export function useTheme() {
-  const [preference, setPreference] = useState<ThemePreference>("dark");
-  const [theme, setTheme] = useState<Theme>("dark");
-  const [ready, setReady] = useState(false);
+  const [preference, setPreference] = useState<ThemePreference>(getStoredPreference);
+  const [theme, setTheme] = useState<Theme>(() => resolveTheme(getStoredPreference()));
 
   useEffect(() => {
-    const initialPreference = getStoredPreference();
-    const resolved = resolveTheme(initialPreference);
-    applyTheme(resolved);
-    setPreference(initialPreference);
-    setTheme(resolved);
-    setReady(true);
-
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onChange = () => {
       const stored = getStoredPreference();
@@ -70,5 +62,5 @@ export function useTheme() {
 
   const label = theme === "light" ? "Dark" : "Light";
 
-  return { theme, preference, setThemePreference, toggle, label, ready };
+  return { theme, preference, setThemePreference, toggle, label, ready: true };
 }

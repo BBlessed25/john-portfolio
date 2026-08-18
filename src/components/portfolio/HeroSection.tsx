@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import Image from "next/image";
 import { profile } from "@/data/portfolio";
 
 export default function HeroSection() {
@@ -7,7 +8,7 @@ export default function HeroSection() {
   return (
     <section className="hero-stage">
       <div className="site-wrap">
-        <img
+        <Image
           src="/john.jpeg"
           alt={profile.name}
           className="hero-photo"

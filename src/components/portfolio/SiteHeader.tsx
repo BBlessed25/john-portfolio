@@ -4,22 +4,14 @@ import { Ellipsis, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import SocialDock from "@/components/portfolio/SocialDock";
 
-export type NavView = "home" | "work" | "projects" | "blog" | "contact";
-
-const navLinks: { label: string; view: NavView }[] = [
-  { label: "Experience", view: "work" },
-  { label: "Projects", view: "projects" },
-  { label: "Blog", view: "blog" },
-  { label: "Contact", view: "contact" },
+const navLinks = [
+  { label: "Experience", href: "#work" },
+  { label: "Projects", href: "#projects" },
+  { label: "Blog", href: "#posts" },
+  { label: "Contact", href: "#contact" },
 ];
 
-type SiteHeaderProps = {
-  view: NavView;
-  onHome: () => void;
-  onNavigate: (view: NavView) => void;
-};
-
-export default function SiteHeader({ view, onHome, onNavigate }: SiteHeaderProps) {
+export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -53,20 +45,15 @@ export default function SiteHeader({ view, onHome, onNavigate }: SiteHeaderProps
   return (
     <header className="site-header">
       <div className="site-wrap site-header-inner" ref={headerRef}>
-        <button type="button" onClick={onHome} className="site-header-brand">
+        <a href="#top" className="site-header-brand" aria-label="Back to top">
           John
-        </button>
+        </a>
 
         <nav className="site-header-nav" aria-label="Main navigation">
           {navLinks.map((link) => (
-            <button
-              key={link.view}
-              type="button"
-              className={`site-header-link${view === link.view ? " is-active" : ""}`}
-              onClick={() => onNavigate(link.view)}
-            >
+            <a key={link.href} href={link.href} className="site-header-link">
               {link.label}
-            </button>
+            </a>
           ))}
 
           <div className="site-header-hamburger-wrap">
@@ -90,18 +77,15 @@ export default function SiteHeader({ view, onHome, onNavigate }: SiteHeaderProps
             {navOpen ? (
               <div className="site-header-mobile-menu" id="mobile-nav" role="menu">
                 {navLinks.map((link) => (
-                  <button
-                    key={link.view}
-                    type="button"
+                  <a
+                    key={link.href}
+                    href={link.href}
                     role="menuitem"
-                    className={`site-header-mobile-link${view === link.view ? " is-active" : ""}`}
-                    onClick={() => {
-                      onNavigate(link.view);
-                      setNavOpen(false);
-                    }}
+                    className="site-header-mobile-link"
+                    onClick={() => setNavOpen(false)}
                   >
                     {link.label}
-                  </button>
+                  </a>
                 ))}
               </div>
             ) : null}

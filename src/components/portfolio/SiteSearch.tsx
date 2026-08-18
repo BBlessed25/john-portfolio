@@ -12,14 +12,15 @@ type SiteSearchProps = {
 export default function SiteSearch({ open, onClose }: SiteSearchProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const results = searchPortfolio(query);
+
+  const handleClose = useCallback(() => {
+    setQuery("");
+    onClose();
+  }, [onClose]);
 
   useEffect(() => {
-    if (!open) {
-      setQuery("");
-      setResults([]);
-      return;
-    }
+    if (!open) return;
 
     inputRef.current?.focus();
     document.body.style.overflow = "hidden";
@@ -29,19 +30,15 @@ export default function SiteSearch({ open, onClose }: SiteSearchProps) {
     };
   }, [open]);
 
-  useEffect(() => {
-    setResults(searchPortfolio(query));
-  }, [query]);
-
   const handleSelect = useCallback(
     (result: SearchResult) => {
-      onClose();
+      handleClose();
       window.setTimeout(() => {
         const target = document.querySelector(result.href);
         target?.scrollIntoView({ behavior: "smooth", block: "center" });
       }, 150);
     },
-    [onClose],
+    [handleClose],
   );
 
   if (!open) return null;
@@ -50,7 +47,7 @@ export default function SiteSearch({ open, onClose }: SiteSearchProps) {
     <div
       className="site-search-overlay"
       role="presentation"
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div
         className="site-search-dialog"
@@ -73,7 +70,7 @@ export default function SiteSearch({ open, onClose }: SiteSearchProps) {
           />
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="site-search-close"
             aria-label="Close search"
           >

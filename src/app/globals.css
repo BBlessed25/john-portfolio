@@ -1256,9 +1256,22 @@ a.experience-company-link:hover svg {
   letter-spacing: -0.025em;
 }
 
-.experience-company-link {
+.experience-company-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
   color: var(--fg-muted);
   font-size: 14.5px;
+}
+
+.experience-company-link {
+  color: var(--fg-muted);
+  font-size: inherit;
+}
+
+.experience-tagline {
+  color: var(--fg-muted);
 }
 
 .experience-location {

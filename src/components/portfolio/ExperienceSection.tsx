@@ -48,7 +48,12 @@ function ExperienceStep({
       </div>
       <div className="experience-row-content">
         <h2>{experience.role}</h2>
-        <CompanyName experience={experience} />
+        <div className="experience-company-line">
+          <CompanyName experience={experience} />
+          {experience.tagline ? (
+            <span className="experience-tagline"> · {experience.tagline}</span>
+          ) : null}
+        </div>
         {experience.location ? (
           <p className="experience-location">{experience.location}</p>
         ) : null}
@@ -79,7 +84,7 @@ export default function ExperienceSection() {
       <div className="experience-list">
         {experiences.map((experience) => (
           <ExperienceStep
-            key={`${experience.company}-${experience.role}`}
+            key={`${experience.company}-${experience.role}-${experience.period}`}
             experience={experience}
           />
         ))}

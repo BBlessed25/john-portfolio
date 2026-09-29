@@ -27,6 +27,13 @@ export const profile = {
 
 export const experiences: Experience[] = [
   {
+    company: "Mercor",
+    role: "Software Engineer",
+    period: "Sep 2026 – Present",
+    location: "San Francisco, California, United States · Remote",
+    highlights: [],
+  },
+  {
     company: "Finsynq",
     companyUrl: "https://finsynq.ca",
     tagline: "Contract Part-time",
@@ -40,7 +47,7 @@ export const experiences: Experience[] = [
     companyUrl: "https://www.canautomate.ca",
     tagline: "Contract Part-time",
     role: "Software Engineer",
-    period: "Dec 2025 – Present",
+    period: "Dec 2025 – Sep 2026",
     location: "London, Ontario, Canada · Hybrid",
     highlights: [],
   },

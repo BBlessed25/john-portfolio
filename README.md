@@ -1,5 +1,37 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Contact form email setup
+
+The hero's **Get in touch** button and the writing sidebar's **Let's talk** link
+open the contact section. The form sends messages through the server route
+`POST /api/contact` using Resend. The recipient is `profile.email` in
+`src/data/portfolio.tsx` (currently `johnnyadex@gmail.com`). The visitor's email
+is used as Reply-To, so replying in your inbox addresses the visitor.
+
+1. Create a [Resend account](https://resend.com/) and
+   [verify a domain you own](https://resend.com/docs/dashboard/domains/introduction)
+   by adding the DNS records Resend provides. For example, verify
+   `johnayodeji.tech` to send from `contact@johnayodeji.tech`.
+2. Create a Resend API key with sending access for that domain.
+3. Copy `.env.example` to `.env.local` and set `RESEND_API_KEY` and
+   `CONTACT_FROM_EMAIL`. The sender must belong to the verified domain; your
+   Gmail address is the recipient, not the sender.
+4. Restart the local Next.js server. For production, add the same variables to
+   your hosting provider's environment settings and redeploy when ready. Run as
+   a Next.js application with server/API support; a static-only export cannot
+   execute this route. Do not prefix either variable with `NEXT_PUBLIC_` or
+   commit `.env.local`.
+5. Submit a message from the form and confirm it arrives in your inbox (check
+   Spam too). Reply to verify the visitor's address is selected. A successful
+   submission means Resend accepted the request; actual delivery must be checked
+   in your inbox or Resend dashboard.
+
+The form validates inputs, blocks cross-origin browser submissions, and includes
+a hidden honeypot for basic bot filtering. For higher traffic, apply a rate limit
+to `/api/contact` using your hosting provider's firewall. The email address remains
+visible as an alternative. Provider failures keep the message in the form and
+show an error; missing configuration returns HTTP 503 rather than false success.
+
 ## Getting Started
 
 First, run the development server:

@@ -76,8 +76,8 @@ export default function ExperienceSection() {
         <p className="inner-page-eyebrow">Experience</p>
         <h1 className="inner-page-title">Work that shaped how I build.</h1>
         <p className="inner-page-copy">
-          A selection of teams, products, and systems I have helped move
-          forward from production software to intelligent, agentic experiences.
+          My experience spans software development, AI applications, automation,
+          and technical evaluation.
         </p>
       </header>
 

@@ -19,12 +19,12 @@ export default function HeroSection() {
           Hi I&apos;m {firstName}, AI Engineer and Software Engineer
         </h1>
         <p className="hero-bio">
-          I am an AI engineer and software engineer remotely working across
-          Canada. I make <em>useful applications</em> for the web, agentic LLM
-          systems, automation, and interfaces people actually use. In my spare
-          time, I enjoy building, reading, and shipping experiments.
+          I’m a software engineer building web applications, backend integrations,
+          and AI-powered automation. My experience spans AI coding agent
+          evaluation, Python services, and frontend development. I’m based in
+          London, Ontario, Canada.
         </p>
-        <a href={`mailto:${profile.email}`} className="pill-btn">
+        <a href="#contact" className="pill-btn">
           Get in touch
           <MessageCircle className="h-4 w-4" strokeWidth={1.7} aria-hidden />
         </a>

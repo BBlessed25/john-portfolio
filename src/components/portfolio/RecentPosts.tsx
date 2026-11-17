@@ -2,7 +2,7 @@
 
 import { Code2, Cpu, Gauge, Mail, MessageCircle, PenLine } from "lucide-react";
 import { FormEvent, useState } from "react";
-import { posts, profile } from "@/data/portfolio";
+import { posts } from "@/data/portfolio";
 
 const PREVIEW_COUNT = 3;
 
@@ -73,7 +73,7 @@ export default function RecentPosts() {
             <p className="inner-page-eyebrow">Start a conversation</p>
             <h2>Have something cool in mind?</h2>
             <p>This could be the start of something great.</p>
-            <a href={`mailto:${profile.email}`} className="pill-btn talk-btn">
+            <a href="#contact" className="pill-btn talk-btn">
               Let&apos;s talk
               <MessageCircle className="h-4 w-4" strokeWidth={1.7} aria-hidden />
             </a>

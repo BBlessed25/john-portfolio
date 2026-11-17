@@ -1522,6 +1522,116 @@ a.experience-company-link:hover svg {
   margin-bottom: 28px;
 }
 
+.contact-form {
+  width: 100%;
+  max-width: 650px;
+  min-width: 0;
+}
+
+.contact-form fieldset {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.contact-field {
+  display: grid;
+  min-width: 0;
+  gap: 10px;
+}
+
+.contact-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.contact-form label {
+  display: block;
+  margin: 0;
+  color: var(--fg);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--border) 75%, var(--fg-muted));
+  border-radius: 10px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.contact-form input {
+  min-height: 54px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--fg-muted);
+  opacity: 0.8;
+}
+
+.contact-form textarea {
+  min-height: 176px;
+  resize: vertical;
+}
+
+.contact-form textarea:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 4px;
+}
+
+.contact-form .contact-submit {
+  justify-self: start;
+  justify-content: center;
+  min-width: 180px;
+  min-height: 50px;
+  max-width: 100%;
+  padding: 13px 22px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.contact-form fieldset:disabled button {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.contact-honeypot {
+  display: none;
+}
+
+.contact-feedback,
+.contact-direct {
+  max-width: 650px;
+  margin: 16px 0 0;
+  color: var(--fg-muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.contact-feedback:empty {
+  display: none;
+}
+
+.contact-direct a {
+  color: var(--fg);
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
@@ -1555,6 +1665,10 @@ input:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .contact-fields {
+    grid-template-columns: 1fr;
+  }
+
   .inner-page,
   .posts-section {
     padding: 72px 0 88px;

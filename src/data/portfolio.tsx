@@ -19,6 +19,7 @@ export type Activity = {
 export const profile = {
   name: "John Ayodeji Adelusi",
   email: "johnnyadex@gmail.com",
+  publicEmail: "contact@johnayodeji.tech",
   linkedin: "https://www.linkedin.com/in/john-ayodeji-ab9142349/",
   github: "https://github.com/BBlessed25",
   portfolio: "https://johnayodejiportfolio.netlify.app",
@@ -31,7 +32,12 @@ export const experiences: Experience[] = [
     role: "Software Engineer",
     period: "Sep 2026 – Present",
     location: "San Francisco, California, United States · Remote",
-    highlights: [],
+    highlights: [
+      "Evaluate AI coding agents on realistic software engineering tasks, reviewing implementation quality, problem-solving approaches, and adherence to requirements.",
+      "Guide code investigation, debugging, implementation, and verification through targeted technical follow-ups.",
+      "Review backend changes involving asynchronous workers, retries, database operations, and application cleanup.",
+      "Assess code diffs and test evidence, documenting correctness issues, unresolved edge cases, and comparative findings.",
+    ],
   },
   {
     company: "Finsynq",
@@ -40,27 +46,34 @@ export const experiences: Experience[] = [
     role: "AI Engineer",
     period: "Jul 2026 – Present",
     location: "Calgary, Alberta, Canada · Remote",
-    highlights: [],
+    highlights: [
+      "Contribute to Python-based AI and NLP features using large language models, prompt engineering, and API workflows.",
+      "Support backend integrations using FastAPI, PostgreSQL, and Supabase.",
+      "Develop structured-output workflows connecting AI responses with application data and services.",
+      "Contribute to frontend development, building and refining application user interfaces.",
+    ],
   },
   {
     company: "CanAutomate",
     companyUrl: "https://www.canautomate.ca",
-    tagline: "Contract Part-time",
     role: "Software Engineer",
     period: "Dec 2025 – Sep 2026",
     location: "London, Ontario, Canada · Hybrid",
-    highlights: [],
+    highlights: [
+      "Built automation services using Python, FastAPI, Celery, and Redis, integrating external APIs, messaging services, Claude API, and AI voice workflows.",
+      "Developed database workflows for lead status, outreach history, engagement activity, and structured API results.",
+      "Debugged integrations and documented service behavior to support repeatable, maintainable automation.",
+    ],
   },
   {
     company: "Oludaye",
-    tagline: "Contract Full-time",
+    tagline: "Permanent Full-time",
     role: "Software Engineer",
     period: "Aug 2022 – Sep 2025",
     location: "Remote",
     highlights: [
-      "Developed a cross-platform fundraising mobile app using React Native and Firebase, enhancing user experience on iOS and Android.",
-      "Created comprehensive technical documentation, including UML diagrams, to support team collaboration and knowledge sharing.",
-      "Resolved 90% of user issues on first contact, significantly reducing downtime and improving productivity.",
+      "Developed a cross-platform fundraising application using React Native and Firebase for iOS and Android.",
+      "Created technical documentation, including UML diagrams, to support collaboration and knowledge sharing.",
     ],
   },
   {
@@ -70,7 +83,10 @@ export const experiences: Experience[] = [
     role: "Frontend Developer",
     period: "Sep 2020 – Jun 2022",
     location: "On-site",
-    highlights: [],
+    highlights: [
+      "Built responsive interfaces using JavaScript, React, HTML, and CSS.",
+      "Supported frontend debugging and collaborative development using version control.",
+    ],
   },
   {
     company: "SEAMFIX",
